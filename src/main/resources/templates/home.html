@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+
+<head>
+    <title>Home Page</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        /* Tùy chỉnh CSS cho trang */
+        .container {
+            margin-top: 50px;
+        }
+        .course-table th {
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+
+<section layout:fragment="content" class="container">
+    <h2>Danh sách các khóa học</h2>
+    <table class="table table-bordered course-table">
+        <thead>
+        <tr>
+            <th>Ngày học</th>
+            <th>Tên</th>
+            <th>Giá</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="course : ${Listcourse}">
+            <td th:text="${course.getStartDate()}"></td>
+            <td th:text="${course.getLectureName()}"></td>
+            <td th:text="${#numbers.formatDecimal(course.getPlace(), 0, 'COMMA', 0, 'POINT')}+ ' VNĐ'"></td>
+
+        </tr>
+        </tbody>
+    </table>
+</section>
+
+</body>
+</html>
